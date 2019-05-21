@@ -4,6 +4,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <form [formGroup]="clientCreateForm" novalidate>
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input formControlName="name" type="text" placeholder="What's your client's name?">
+      </ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Your client's email address"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Starting Weight</ion-label>
+      <ion-input formControlName="startingWeight" type="number" placeholder="Your client's starting weight"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="clientCreate(clientCreateForm)" [disabled]="!clientCreateForm.valid">
+      ADD NEW CLIENT
+    </ion-button>
+  </form>
 </ion-content>
