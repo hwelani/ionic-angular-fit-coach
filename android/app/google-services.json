@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "138562886288",
+    "firebase_url": "https://firestore-fit-coach.firebaseio.com",
+    "project_id": "firestore-fit-coach",
+    "storage_bucket": "firestore-fit-coach.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138562886288:android:1e470d5305c63eca",
+        "android_client_info": {
+          "package_name": "com.javebratt.fitCoach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138562886288-v41itb315i9b9ca9ci7671iachiepc8m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdNPKaqt3OADS8jsFS4cewz31J48gknqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138562886288-v41itb315i9b9ca9ci7671iachiepc8m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "138562886288-itgl6vjorelq0u8vvbhdmu1h6gin7r36.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.javebratt.fitCoach"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
