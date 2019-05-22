@@ -3,6 +3,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 
+import { Plugins, PushNotificationToken } from '@capacitor/core';
+
+const { PushNotifications } = Plugins;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,10 +31,26 @@ export class AuthService {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
-        this.firestore.doc(`/userProfile/${userCredential.user.uid}`).set({
-          admin: true,
-          email,
-          fullName
+        PushNotifications.register();
+        PushNotifications.addListener(
+          'registration',
+          (token: PushNotificationToken) => {
+            this.firestore.doc(`/userProfile/${userCredential.user.uid}`).set({
+              admin: true,
+              email,
+              fullName,
+              token: token.value
+            });
+          }
+        );
+        PushNotifications.addListener('registrationError', (error: any) => {
+          console.log('error on register ' + JSON.stringify(error));
+          this.firestore.doc(`/userProfile/${userCredential.user.uid}`).set({
+            admin: true,
+            email,
+            fullName,
+            token: null
+          });
         });
       });
   }

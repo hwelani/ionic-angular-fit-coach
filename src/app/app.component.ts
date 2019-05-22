@@ -30,15 +30,6 @@ export class AppComponent {
 
     PushNotifications.register();
     PushNotifications.addListener(
-      'registration',
-      (token: PushNotificationToken) => {
-        console.log('token ' + token.value);
-      }
-    );
-    PushNotifications.addListener('registrationError', (error: any) => {
-      console.log('error on register ' + JSON.stringify(error));
-    });
-    /* PushNotifications.addListener(
       'pushNotificationReceived',
       (notification: PushNotification) => {
         console.log('notification ' + JSON.stringify(notification));
@@ -49,9 +40,9 @@ export class AppComponent {
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: PushNotificationActionPerformed) => {
-        console.log('notification ' + JSON.stringify(notification));
+        console.log('notification action ' + JSON.stringify(notification));
         this.notifications.push(notification);
       }
-    ); */
+    );
   }
 }
