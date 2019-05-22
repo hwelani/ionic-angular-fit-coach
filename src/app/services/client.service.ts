@@ -26,16 +26,16 @@ export class ClientService {
     email: string,
     startingWeight: number
   ): Promise<any> {
-    const newClientRef = await this.firestore
-      .collection(`userProfile/${this.userId}/clientList/`)
-      .add({});
+    const newClientId = await this.firestore.createId();
 
-    return newClientRef.set({
-      id: newClientRef.id,
-      fullName,
-      email,
-      startingWeight: startingWeight * 1
-    });
+    return this.firestore
+      .doc(`userProfile/${this.userId}/clientList/${newClientId}`)
+      .set({
+        id: newClientId,
+        fullName,
+        email,
+        startingWeight: startingWeight * 1
+      });
   }
 
   clientListShow(): AngularFirestoreCollection<any> {
