@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.javebratt.fitCoach;
 
 import android.os.Bundle;
 

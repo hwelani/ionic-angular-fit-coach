@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
-import { Plugins } from '@capacitor/core';
+import {
+  Plugins,
+  PushNotification,
+  PushNotificationActionPerformed,
+  PushNotificationToken
+} from '@capacitor/core';
 
-const { SplashScreen, StatusBar } = Plugins;
+const { SplashScreen, StatusBar, PushNotifications } = Plugins;
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  notifications: any = [];
+
   constructor() {
     this.initializeApp();
   }
@@ -20,5 +27,31 @@ export class AppComponent {
     StatusBar.hide().catch(error => {
       console.error(error);
     });
+
+    PushNotifications.register();
+    PushNotifications.addListener(
+      'registration',
+      (token: PushNotificationToken) => {
+        console.log('token ' + token.value);
+      }
+    );
+    PushNotifications.addListener('registrationError', (error: any) => {
+      console.log('error on register ' + JSON.stringify(error));
+    });
+    /* PushNotifications.addListener(
+      'pushNotificationReceived',
+      (notification: PushNotification) => {
+        console.log('notification ' + JSON.stringify(notification));
+        this.notifications.push(notification);
+      }
+    );
+
+    PushNotifications.addListener(
+      'pushNotificationActionPerformed',
+      (notification: PushNotificationActionPerformed) => {
+        console.log('notification ' + JSON.stringify(notification));
+        this.notifications.push(notification);
+      }
+    ); */
   }
 }
