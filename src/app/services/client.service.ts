@@ -49,11 +49,12 @@ export class ClientService {
   clientTrackWeight(
     weight: number
   ): Promise<firebase.firestore.DocumentReference> {
+    console.log('weight: ', weight);
     return this.firestore
       .collection(`userProfile/${this.userId}/weightTrack/`)
       .add({
         weight,
-        date: firebase.firestore.Timestamp
+        date: firebase.firestore.FieldValue.serverTimestamp()
       });
   }
 
