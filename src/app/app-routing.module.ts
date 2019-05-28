@@ -31,7 +31,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'client-detail',
+    path: 'client-detail/:id',
     loadChildren:
       './pages/client-detail/client-detail.module#ClientDetailPageModule',
     canActivate: [AuthGuard]

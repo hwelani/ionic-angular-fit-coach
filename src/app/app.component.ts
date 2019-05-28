@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import {
   Plugins,
   PushNotification,
-  PushNotificationActionPerformed,
-  PushNotificationToken
+  PushNotificationActionPerformed
 } from '@capacitor/core';
+import { Router } from '@angular/router';
 
 const { SplashScreen, StatusBar, PushNotifications } = Plugins;
 
@@ -15,7 +15,7 @@ const { SplashScreen, StatusBar, PushNotifications } = Plugins;
 export class AppComponent {
   notifications: any = [];
 
-  constructor() {
+  constructor(private router: Router) {
     this.initializeApp();
   }
 
@@ -34,6 +34,9 @@ export class AppComponent {
       (notification: PushNotification) => {
         console.log('notification ' + JSON.stringify(notification));
         this.notifications.push(notification);
+        this.router.navigateByUrl(
+          '/client-detail/' + notification.data.clientId
+        );
       }
     );
 
@@ -42,6 +45,9 @@ export class AppComponent {
       (notification: PushNotificationActionPerformed) => {
         console.log('notification action ' + JSON.stringify(notification));
         this.notifications.push(notification);
+        this.router.navigateByUrl(
+          '/client-detail/' + notification.notification.data.clientId
+        );
       }
     );
   }
