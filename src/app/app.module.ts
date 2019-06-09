@@ -12,6 +12,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { firebaseConfig } from './credentials';
 
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,7 +25,10 @@ import { firebaseConfig } from './credentials';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AngularFireAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

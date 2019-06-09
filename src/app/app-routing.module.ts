@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './services/auth.guard';
+import { redirectUnauthorizedTo, canActivate } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: './home/home.module#HomePageModule',
-    canActivate: [AuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   {
@@ -23,18 +25,18 @@ const routes: Routes = [
     path: 'client-create',
     loadChildren:
       './pages/client-create/client-create.module#ClientCreatePageModule',
-    canActivate: [AuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'client-list',
     loadChildren: './pages/client-list/client-list.module#ClientListPageModule',
-    canActivate: [AuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'client-detail/:id',
     loadChildren:
       './pages/client-detail/client-detail.module#ClientDetailPageModule',
-    canActivate: [AuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
   }
 ];
 
