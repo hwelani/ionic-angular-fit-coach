@@ -61,7 +61,7 @@ export class ClientService {
   clientWeightHistory(): AngularFirestoreCollection<any> {
     return this.firestore.collection(
       `userProfile/${this.userId}/weightTrack`,
-      ref => ref.orderBy('date').limit(5)
+      ref => ref.orderBy('date', 'desc').limit(5)
     );
   }
 
